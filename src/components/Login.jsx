@@ -4,6 +4,7 @@ import logIn from "../images/logIn.png";
 import { addLoginData } from "../helpers/apiCall";
 import { useHistory } from "react-router-dom";
 import { myContext } from "../context/myContext";
+import "../css/form.css"
 
 const Login = () => {
   const history = useHistory();
@@ -30,7 +31,7 @@ const Login = () => {
         <h2>Welcome back!!</h2>
         {error && <h1 style={{ color: "red" }}>Login Error </h1>}
         <h3>Please fill in your credentials.</h3>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className="myForm">
           <h1>Login</h1>
           <input
             type="text"

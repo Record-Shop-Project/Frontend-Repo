@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./Home";
 import Login from "./Login";
 import Signup from "./Signup";
-import  {RecordStore } from "./RecordStore";
+import { RecordStore } from "./RecordStore";
 import NotFound404 from "./NotFound404";
 import Footer from "./Footer";
 import UpdateProfile from "./UpdateProfile";
