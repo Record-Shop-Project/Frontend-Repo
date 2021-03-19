@@ -11,6 +11,19 @@ import avatar6 from '../images/avatar6.jpg';
 import avatar7 from '../images/avatar7.jpg';
 import avatar8 from '../images/avatar8.jpg';
 import avatar9 from '../images/avatar9.jpg';
+//--------------------------------------------------
+// const newTodos = todos.map((item) => {
+//     if (item._id == updatedTodo.data._id) {
+//       console.log('Item', item);
+//       item.status = !item.status;
+//     }
+//     return item;
+//   });
+//   console.log('New todos', newTodos);
+//   setTodos(newTodos);
+
+
+
 
 const UpdateProfile = () => {
     const context = useContext(myContext)

@@ -9,26 +9,26 @@ const Login = () => {
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
   const context = useContext(myContext);
-  const { user, setUser } = context;
-  const [error, setError] = useState(false)
-
+  const { loginUser, setloginUser } = context;
+  const [error, setError] = useState(false);
 
   const onSubmit = async (data) => {
     const newData = await addLoginData(data);
     if (newData.error) {
       setError(true);
     } else {
-      setUser([...user, newData.data]);
+      setloginUser([...loginUser, newData.data]);
       history.push("/store");
     }
-
   };
+
+  console.log("user=>", loginUser);
 
   return (
     <div className="login-wrapper">
       <div>
         <h2>Welcome back!!</h2>
-        {error && <h1 style={{ color: 'red' }}>Login Error </h1>}
+        {error && <h1 style={{ color: "red" }}>Login Error </h1>}
         <h3>Please fill in your credentials.</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1>Login</h1>
@@ -50,7 +50,7 @@ const Login = () => {
           <button>Log in</button>
           <span>
             You don’t have an account? Create one{" "}
-            <a onClick={() => history.push("/login")}>>here</a>
+            <a onClick={() => history.push("/login")}>here</a>
           </span>
         </form>
       </div>

@@ -4,11 +4,12 @@ export const myContext = createContext();
 
 export const UserContextProvider = (props) => {
   const [signup, setSignup] = useState([]);
-  const [user, setUser] = useState([]);
+  const [loginUser, setloginUser] = useState([]);
+  
   const [updateUser, setUpdateUser] = useState([])
 
   return (
-    <myContext.Provider value={{ signup, setSignup, user, setUser, updateUser, setUpdateUser }}>
+    <myContext.Provider value={{ signup, setSignup, loginUser, setloginUser, updateUser, setUpdateUser }}>
       {props.children}
     </myContext.Provider>
   );
