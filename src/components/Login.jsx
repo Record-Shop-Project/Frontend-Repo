@@ -1,8 +1,8 @@
-import React, {useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import logIn from "../images/logIn.png";
 import { addLoginData } from "../helpers/apiCall";
-import { NavLink, Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { myContext } from "../context/myContext";
 
 const Login = () => {
@@ -10,7 +10,7 @@ const Login = () => {
   const { register, handleSubmit, errors } = useForm();
   const context = useContext(myContext);
   const { user, setUser } = context;
-const [error, setError] = useState(false)
+  const [error, setError] = useState(false)
 
 
   const onSubmit = async (data) => {
@@ -19,16 +19,16 @@ const [error, setError] = useState(false)
       setError(true);
     } else {
       setUser([...user, newData.data]);
-      history.push("/home");
+      history.push("/store");
     }
-    // return newData
+
   };
 
   return (
     <div className="login-wrapper">
       <div>
         <h2>Welcome back!!</h2>
-{error && <h1 style ={{color:'red'}}>Login Error </h1>}
+        {error && <h1 style={{ color: 'red' }}>Login Error </h1>}
         <h3>Please fill in your credentials.</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1>Login</h1>

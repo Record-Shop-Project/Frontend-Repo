@@ -7,6 +7,7 @@ export const RecordStore = () => {
     const fetchRecords = async ()=>{
         const myRecords =  await getRecordData()
         setRecords(myRecords)
+        console.log("records", records);
     }
 
     useEffect(() => {

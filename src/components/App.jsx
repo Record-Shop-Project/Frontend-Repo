@@ -6,6 +6,7 @@ import Signup from "./Signup";
 import  {RecordStore } from "./RecordStore";
 import NotFound404 from "./NotFound404";
 import Footer from "./Footer";
+import UpdateProfile from "./UpdateProfile";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/" exact component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
+          <Route path="/profile" component={UpdateProfile} />
           <Route path="/store" component={RecordStore} />
           <Route path="/notfound" component={NotFound404} />
         </Switch>

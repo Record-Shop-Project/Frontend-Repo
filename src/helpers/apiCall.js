@@ -15,7 +15,7 @@ export const addLoginData = async (data) => {
   };
 
   export const addSignupData = async (data) => {
-      console.log(`I am creating singnupdata`);
+     
 
       const config = {
           Headers:{
@@ -27,7 +27,7 @@ export const addLoginData = async (data) => {
 
         const signupdata = await axios.post(`${serverUrl}/users`,data);
         console.log("signupdata", signupdata);
-        return  signupdata;
+        return  signupdata.data;
     } catch(err){
         console.log("error:",err.response.data);
         return err.response.data
@@ -41,6 +41,19 @@ export const addLoginData = async (data) => {
         const recordData = await axios.get(`${serverUrl}/records`);
  
         return  recordData.data;
+    } catch(err){
+        console.log(err);
+        
+    }
+  };
+
+  export const updateUserProfile = async (data,id) => {
+
+    try{
+
+        const updatedUser = await axios.put(`${serverUrl}/users`,{...data,id});
+ 
+        return  updatedUser.data;
     } catch(err){
         console.log(err);
         
