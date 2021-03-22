@@ -24,6 +24,13 @@ const UpdateProfile = () => {
         // console.log("data", data);
         console.log("nickname=>", loginUser.nickname, "nickName", loginUser.nickName);
     };
+
+    // const avatarCode = loginUser.avatar.slice(-6, -4);
+    // console.log("useravatar", loginUser.avatar.slice(-6, -4));
+    // const updateAvatar = async (e) => {
+    //     const chosenAvatar = e.target.dataset.name;
+    // }
+
     return (
         <div className="profile-wrapper">
             <div className="profile-form-wrapper">
@@ -74,7 +81,7 @@ const UpdateProfile = () => {
                 <h3>omg. These are so cool. tenk u Gabriel hollington</h3>
                 <div className="profile-img-wrapper">
                     <div className="profile-avatar-main-wrapper">
-                        <img className="avatar-main-img" src={avatar1} alt={avatar1} />
+                        <img className="avatar-main-img" src={loginUser.avatar} alt={loginUser.avatar} />
                     </div>
                     <div className="profile-avatar-rest-wrapper">
                         <img className="avatar-img" src={avatar1} alt={avatar1} />
