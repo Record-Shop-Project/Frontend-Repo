@@ -19,82 +19,78 @@ const UpdateProfile = () => {
 
   user.avatar = `${req.protocol}://${req.get("host")}${user.avatar}`;
 
-  const onSubmit = async (data) => {
-    console.log("data=>", data);
-    const updateUser = await updateUserProfile(data, loginUser._id);
-    // console.log("data", data);
-    console.log(
-      "nickname=>",
-      loginUser.nickname,
-      "nickName",
-      loginUser.nickName
-    );
-  };
-  return (
-    <div className="profile-wrapper">
-      <div className="profile-form-wrapper">
-        <div className="profile-form-inner-wrapper">
-          <h2>Your profile, {loginUser.nickName}.</h2>
-          <h3>Don’t forget to click the save button Before you are gone!</h3>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              className="names"
-              type="text"
-              name="firstName"
-              ref={register({ required: true })}
-              defaultValue={loginUser.firstName}
-            />
-            <input
-              className="names"
-              type="text"
-              name="lastName"
-              ref={register({ required: true })}
-              defaultValue={loginUser.lastName}
-            />
-            <input
-              className="long-inputs"
-              type="text"
-              name="email"
-              ref={register({ required: true })}
-              defaultValue={loginUser.email}
-            />
+    const onSubmit = async (data) => {
+        console.log("data=>", data);
+        const updateUser = await updateUserProfile(data, loginUser._id);
+        // console.log("data", data);
+        console.log("nickname=>", loginUser.nickname, "nickName", loginUser.nickName);
+    };
+
+    // const avatarCode = loginUser.avatar.slice(-6, -4);
+    // console.log("useravatar", loginUser.avatar.slice(-6, -4));
+    // const updateAvatar = async (e) => {
+    //     const chosenAvatar = e.target.dataset.name;
+    // }
+
+    return (
+        <div className="profile-wrapper">
+            <div className="profile-form-wrapper">
+                <div className="profile-form-inner-wrapper">
+                    <h2>Your profile, {loginUser.nickName}.</h2>
+                    <h3>Don’t forget to click the save button Before you are gone!</h3>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <input
+                            className="names"
+                            type="text"
+                            name="firstName"
+                            ref={register({ required: true })}
+                            defaultValue={loginUser.firstName}
+                        />
+                        <input
+                            className="names"
+                            type="text"
+                            name="lastName"
+                            ref={register({ required: true })}
+                            defaultValue={loginUser.lastName}
+                        />
+                        <input
+                            className="long-inputs"
+                            type="text"
+                            name="email"
+                            ref={register({ required: true })}
+                            defaultValue={loginUser.email}
+
+                        />
+
+                        <div className='error-message'>
+                            {errors.email && <span>{errors.email.message}</span>}
+                        </div>
 
             <div className="error-message">
               {errors.email && <span>{errors.email.message}</span>}
             </div>
-
-            <input
-              className="long-inputs"
-              type="text"
-              name="nickName"
-              ref={register({ required: true })}
-              placeholder={loginUser.nickName}
-            />
-            <input type="submit" value="save" />
-          </form>
+            <div className="profile-avatar-wrapper">
+                <h2>You can also update your supa kewl profile pic.</h2>
+                <h3>omg. These are so cool. tenk u Gabriel hollington</h3>
+                <div className="profile-img-wrapper">
+                    <div className="profile-avatar-main-wrapper">
+                        <img className="avatar-main-img" src={loginUser.avatar} alt={loginUser.avatar} />
+                    </div>
+                    <div className="profile-avatar-rest-wrapper">
+                        <img className="avatar-img" src={avatar1} alt={avatar1} />
+                        <img className="avatar-img" src={avatar2} alt={avatar2} />
+                        <img className="avatar-img" src={avatar3} alt={avatar3} />
+                        <img className="avatar-img" src={avatar4} alt={avatar4} />
+                        <img className="avatar-img" src={avatar5} alt={avatar5} />
+                        <img className="avatar-img" src={avatar6} alt={avatar6} />
+                        <img className="avatar-img" src={avatar7} alt={avatar7} />
+                        <img className="avatar-img" src={avatar8} alt={avatar8} />
+                        <img className="avatar-img" src={avatar9} alt={avatar9} />
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div className="profile-avatar-wrapper">
-        <h2>You can also update your supa kewl profile pic.</h2>
-        <h3>omg. These are so cool. tenk u Gabriel hollington</h3>
-        <div className="profile-img-wrapper">
-          <div className="profile-avatar-main-wrapper">
-            <img className="avatar-main-img" src={avatar1} alt={avatar1} />
-          </div>
-          <div className="profile-avatar-rest-wrapper">
-            <img className="avatar-img" src={avatar1} alt={avatar1} />
-            <img className="avatar-img" src={avatar2} alt={avatar2} />
-            <img className="avatar-img" src={avatar3} alt={avatar3} />
-            <img className="avatar-img" src={avatar4} alt={avatar4} />
-            <img className="avatar-img" src={avatar5} alt={avatar5} />
-            <img className="avatar-img" src={avatar6} alt={avatar6} />
-            <img className="avatar-img" src={avatar7} alt={avatar7} />
-            <img className="avatar-img" src={avatar8} alt={avatar8} />
-            <img className="avatar-img" src={avatar9} alt={avatar9} />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
 };
+
 export default UpdateProfile;
