@@ -4,13 +4,13 @@ import logIn from "../images/logIn.png";
 import { addLoginData } from "../helpers/apiCall";
 import { useHistory } from "react-router-dom";
 import { myContext } from "../context/myContext";
+import "../css/form.css"
 
 const Login = () => {
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
   const context = useContext(myContext);
-  const { user, setUser } = context;
-  const [error, setError] = useState(false)
+  const { loginUser, setloginUser, userStatus, setUserStatus, error, setError } = context;
 
 
   const onSubmit = async (data) => {
@@ -18,19 +18,22 @@ const Login = () => {
     if (newData.error) {
       setError(true);
     } else {
-      setUser([...user, newData.data]);
+      setUserStatus(true)
+      setloginUser(newData.data);
       history.push("/store");
-    }
 
+    }
   };
+
+  console.log("userStatus=>", userStatus);
 
   return (
     <div className="login-wrapper">
       <div>
         <h2>Welcome back!!</h2>
-        {error && <h1 style={{ color: 'red' }}>Login Error </h1>}
+        {error && <h1 style={{ color: "red" }}>Login Error </h1>}
         <h3>Please fill in your credentials.</h3>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className="myForm">
           <h1>Login</h1>
           <input
             type="text"
@@ -50,7 +53,7 @@ const Login = () => {
           <button>Log in</button>
           <span>
             You don’t have an account? Create one{" "}
-            <a onClick={() => history.push("/login")}>>here</a>
+            <a onClick={() => history.push("/store")}>here</a>
           </span>
         </form>
       </div>

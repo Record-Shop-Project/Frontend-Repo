@@ -11,3 +11,14 @@
     //   let result = await response.json()
 
     //  console.log(result);
+
+
+    // useEffect(() => {
+    //     const getData = async () => {
+    //         let res = await updateUserProfile(firstName)
+    //         setloginUser(res.data)
+    //     }
+    //     getData()
+    // }, [])
+
+    // console.log("loginUser=>", loginUser.firstName);

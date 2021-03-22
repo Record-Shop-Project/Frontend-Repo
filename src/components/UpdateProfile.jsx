@@ -12,22 +12,29 @@ import avatar6 from "../images/avatar6.jpg";
 import avatar7 from "../images/avatar7.jpg";
 import avatar8 from "../images/avatar8.jpg";
 import avatar9 from "../images/avatar9.jpg";
-
 const UpdateProfile = () => {
   const context = useContext(myContext);
-  const { signup } = context;
+  const { loginUser } = context;
   const { register, handleSubmit, errors } = useForm();
 
-  const onSubmit = async (data) => {
-    const updateUser = await updateUserProfile(data, signup._id);
+  user.avatar = `${req.protocol}://${req.get("host")}${user.avatar}`;
 
+  const onSubmit = async (data) => {
+    console.log("data=>", data);
+    const updateUser = await updateUserProfile(data, loginUser._id);
     // console.log("data", data);
+    console.log(
+      "nickname=>",
+      loginUser.nickname,
+      "nickName",
+      loginUser.nickName
+    );
   };
   return (
     <div className="profile-wrapper">
       <div className="profile-form-wrapper">
         <div className="profile-form-inner-wrapper">
-          <h2>Your profile, N A M E.</h2>
+          <h2>Your profile, {loginUser.nickName}.</h2>
           <h3>Don’t forget to click the save button Before you are gone!</h3>
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
@@ -35,31 +42,35 @@ const UpdateProfile = () => {
               type="text"
               name="firstName"
               ref={register({ required: true })}
-              placeholder="THE ACTUAL NAME"
+              defaultValue={loginUser.firstName}
             />
             <input
               className="names"
               type="text"
               name="lastName"
               ref={register({ required: true })}
-              placeholder="ACTUAL LASTNAME"
+              defaultValue={loginUser.lastName}
             />
             <input
               className="long-inputs"
               type="text"
               name="email"
               ref={register({ required: true })}
-              placeholder="USER EMAIL"
+              defaultValue={loginUser.email}
             />
+
+            <div className="error-message">
+              {errors.email && <span>{errors.email.message}</span>}
+            </div>
+
             <input
               className="long-inputs"
               type="text"
               name="nickName"
               ref={register({ required: true })}
-              placeholder="ACTUAL NICKNAME"
+              placeholder={loginUser.nickName}
             />
-
-            <button>Save</button>
+            <input type="submit" value="save" />
           </form>
         </div>
       </div>
@@ -86,5 +97,4 @@ const UpdateProfile = () => {
     </div>
   );
 };
-
 export default UpdateProfile;

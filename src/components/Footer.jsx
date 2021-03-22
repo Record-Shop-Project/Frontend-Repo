@@ -1,13 +1,14 @@
 import React from 'react'
-
-
-const Footer = ()=> {
+import '../css/footer.css'
+const Footer = () => {
     const date = new Date().getFullYear();
 
     return (
-        <footer>
-            <p>&copy;AEMT_{date}</p>
-        </footer>
+        <div className='footer'>
+            <footer >
+                <p>&copy;AEMT_{date}</p>
+            </footer>
+        </div>
     );
 };
 
