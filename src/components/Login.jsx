@@ -10,20 +10,22 @@ const Login = () => {
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
   const context = useContext(myContext);
-  const { loginUser, setloginUser } = context;
-  const [error, setError] = useState(false);
+  const { loginUser, setloginUser, userStatus, setUserStatus, error, setError } = context;
+
 
   const onSubmit = async (data) => {
     const newData = await addLoginData(data);
     if (newData.error) {
       setError(true);
     } else {
-      setloginUser([...loginUser, newData.data]);
+      setUserStatus(true)
+      setloginUser(newData.data);
       history.push("/store");
+
     }
   };
 
-  console.log("user=>", loginUser);
+  console.log("userStatus=>", userStatus);
 
   return (
     <div className="login-wrapper">
@@ -51,7 +53,7 @@ const Login = () => {
           <button>Log in</button>
           <span>
             You don’t have an account? Create one{" "}
-            <a onClick={() => history.push("/login")}>here</a>
+            <a onClick={() => history.push("/store")}>here</a>
           </span>
         </form>
       </div>

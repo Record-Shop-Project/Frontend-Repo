@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
 import { myContext } from "../context/myContext"
 import { getRecordData } from "../helpers/apiCall";
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 import { updateUserProfile } from "../helpers/apiCall"
-
+import "../css/recordStore.css"
 
 export const RecordStore = () => {
+    const history = useHistory()
+    let { id } = useParams();
 
     const context = useContext(myContext)
     const { loginUser, setloginUser } = context
@@ -19,23 +21,34 @@ export const RecordStore = () => {
 
     useEffect(() => {
         fetchRecords()
-
-
     }, [])
+
+    const fetchLoginData = () => {
+        console.clear()
+        console.log("loginUser=>", loginUser);
+
+        history.push(`/profile/${loginUser._id}`)
+        // loginUser.id
+    }
+
 
     return (
 
-        <div>
+        <div className="store-wrapper">
+            <section>
+                <h3>Dashboard</h3>
+                <p>Here you can find all our records.</p>
 
-            <button onClick={() => console.log("loginuser", loginUser)}>profile</button>
-            {records && records.map((record) => {
-                return (
+                <button onClick={fetchLoginData} >profile</button>
+                {records && records.map((record) => {
+                    return (
 
-                    <div>
-                        <img src={record.cover} />
-                    </div>
-                )
-            })}
+                        <div className='record-continer'>
+                            <img src={record.cover} />
+                        </div>
+                    )
+                })}
+            </section>
         </div>
     )
 };

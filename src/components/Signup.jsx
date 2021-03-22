@@ -9,29 +9,19 @@ import "../css/form.css"
 const Signup = () => {
     const context = useContext(myContext)
     const { signup, setSignup } = context
-
     const history = useHistory()
-
     const { register, handleSubmit, errors } = useForm();
 
     const onSubmit = async (data) => {
-
         const user = await addSignupData(data)
-
-
-
         setSignup(user)
-
         history.push("/store")
-
-
     }
     console.log("users", signup);
 
     return (
         <>
             <div className="signup-wrapper">
-
                 <div>
                     <h2>Hurrraaaaay! Let us know who you are!</h2>
                     <h3>We won’t share you info with anybody. I promise.</h3>
@@ -42,7 +32,6 @@ const Signup = () => {
                         {errors.email && <p>please provide your valid email!</p>}
                         <input type="text" name="nickName" ref={register({ required: true })} placeholder="Nickname" />
                         <input type="password" name="password" ref={register({ required: true })} placeholder="Password" />
-
 
                         <input type="password" name="password" ref={register({ required: true })} placeholder="Repeat password" />
                         <button>Create account</button>

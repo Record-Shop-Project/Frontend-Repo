@@ -18,7 +18,7 @@ const App = () => {
           <Route path="/signup" component={Signup} />
           <Route path="/profile" component={UpdateProfile} />
           <Route path="/store" component={RecordStore} />
-          <Route path="/notfound" component={NotFound404} />
+          <Route path="*" component={NotFound404} />
         </Switch>
         <Footer />
       </Router>
