@@ -1,15 +1,14 @@
 import React, { useContext } from "react";
 import { myContext } from "../context/myContext";
 import { useParams, useHistory } from "react-router-dom";
-import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 import "../css/nav.css";
 
 const Nav = () => {
-  let { id } = useParams();
-  const history = useHistory();
   const context = useContext(myContext);
   const { userStatus, loginUser } = context;
+  let { id } = useParams();
+  const history = useHistory();
 
   const fetchLoginData = () => {
     history.push(`/profile/${loginUser._id}`);

@@ -27,6 +27,7 @@ const UpdateProfile = () => {
         const code = e.target.dataset.name;
         const data = { avatar: `/images/${code}.jpg` };
         const updateUser = await updateUserProfile(data, loginUser._id);
+        debugger
         if (!updateUser.error) {
             setloginUser(updateUser);
         }

@@ -37,7 +37,8 @@ export const getRecordData = async () => {
 
 export const updateUserProfile = async (data, id) => {
   try {
-    const updatedUser = await axios.patch(`${serverUrl}/users/${id}`, data );
+    const updatedUser = await axios.put(`${serverUrl}/users/${id}`, data);
+    console.log("updatedUser:", updatedUser);
     return updatedUser.data;
   } catch (err) {
     console.log(err);
