@@ -21,18 +21,16 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     const newData = await addLoginData(data);
-    console.log(newData);
 
     if (newData.error) {
       setError(true);
     } else {
       setUserStatus(true);
+      console.log("newdata.data", newData.data);
       setloginUser(newData.data);
       history.push("/store");
     }
   };
-
-  console.log("userStatus=>", userStatus);
 
   return (
     <div className="login-wrapper">

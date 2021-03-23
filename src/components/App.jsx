@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Nav from "../components/Nav";
 import Home from "./Home";
 import Login from "./Login";
 import Signup from "./Signup";
@@ -12,6 +13,7 @@ const App = () => {
   return (
     <div className="App">
       <Router>
+        <Nav />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/login" component={Login} />

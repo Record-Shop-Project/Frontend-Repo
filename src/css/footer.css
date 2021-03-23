@@ -1,9 +1,10 @@
 .footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
   width: 100%;
-  background-color: rgb(82, 78, 78);
-  color: white;
+  background: #f2f2f2 0% 0% no-repeat padding-box;
   text-align: center;
+  margin: 0;
 }
