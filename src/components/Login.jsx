@@ -4,28 +4,33 @@ import logIn from "../images/logIn.png";
 import { addLoginData } from "../helpers/apiCall";
 import { useHistory } from "react-router-dom";
 import { myContext } from "../context/myContext";
-import "../css/form.css"
+import "../css/form.css";
 
 const Login = () => {
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
   const context = useContext(myContext);
-  const { loginUser, setloginUser, userStatus, setUserStatus, error, setError } = context;
-
+  const {
+    loginUser,
+    setloginUser,
+    userStatus,
+    setUserStatus,
+    error,
+    setError,
+  } = context;
 
   const onSubmit = async (data) => {
     const newData = await addLoginData(data);
+
     if (newData.error) {
       setError(true);
     } else {
-      setUserStatus(true)
+      setUserStatus(true);
+      console.log("newdata.data", newData.data);
       setloginUser(newData.data);
       history.push("/store");
-
     }
   };
-
-  console.log("userStatus=>", userStatus);
 
   return (
     <div className="login-wrapper">

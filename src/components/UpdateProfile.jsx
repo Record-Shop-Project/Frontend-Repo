@@ -14,29 +14,31 @@ import avatar8 from "../images/avatar8.jpg";
 import avatar9 from "../images/avatar9.jpg";
 const UpdateProfile = () => {
     const context = useContext(myContext);
-    const { loginUser } = context;
-    console.log("loginUser=", loginUser);
-
+    const { loginUser, setloginUser } = context;
     const { register, handleSubmit, errors } = useForm();
 
     const onSubmit = async (data) => {
-        console.log("data=>", data);
         const updateUser = await updateUserProfile(data, loginUser._id);
-        // console.log("data", data);
-        console.log("nickname=>", loginUser.nickname, "nickName", loginUser.nickName);
     };
 
-    // const avatarCode = loginUser.avatar.slice(-6, -4);
-    // console.log("useravatar", loginUser.avatar.slice(-6, -4));
-    // const updateAvatar = async (e) => {
-    //     const chosenAvatar = e.target.dataset.name;
-    // }
+    //------------ Update Avatar ---------------------------------------
+
+    const updateAvatar = async (e) => {
+        const code = e.target.dataset.name;
+        const data = { avatar: `/images/${code}.jpg` };
+        const updateUser = await updateUserProfile(data, loginUser._id);
+        if (!updateUser.error) {
+            setloginUser(updateUser);
+        }
+        console.clear();
+        console.log("this is code", code);
+    };
 
     return (
         <div className="profile-wrapper">
             <div className="profile-form-wrapper">
                 <div className="profile-form-inner-wrapper">
-                    <h2>Your profile, {loginUser.nickName}.</h2>
+                    {loginUser.nickName && <h2>Your profile, {loginUser.nickName}.</h2>}
                     <h3>Don’t forget to click the save button Before you are gone!</h3>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <input
@@ -59,10 +61,9 @@ const UpdateProfile = () => {
                             name="email"
                             ref={register({ required: true })}
                             defaultValue={loginUser.email}
-
                         />
 
-                        <div className='error-message'>
+                        <div className="error-message">
                             {errors.email && <span>{errors.email.message}</span>}
                         </div>
 
@@ -71,7 +72,7 @@ const UpdateProfile = () => {
                             type="text"
                             name="nickName"
                             ref={register({ required: true })}
-                            placeholder={loginUser.nickName}
+                            defaultValue={loginUser.nickName}
                         />
                         <input type="submit" value="save" />
                     </form>
@@ -82,22 +83,80 @@ const UpdateProfile = () => {
                 <h3>omg. These are so cool. tenk u Gabriel hollington</h3>
                 <div className="profile-img-wrapper">
                     <div className="profile-avatar-main-wrapper">
-                        <img className="avatar-main-img" src={loginUser.avatar} alt={loginUser.avatar} />
+                        <img
+                            className="avatar-main-img"
+                            src={loginUser.avatar}
+                            alt={loginUser.avatar}
+                        />
                     </div>
                     <div className="profile-avatar-rest-wrapper">
-                        <img className="avatar-img" src={avatar1} alt={avatar1} />
-                        <img className="avatar-img" src={avatar2} alt={avatar2} />
-                        <img className="avatar-img" src={avatar3} alt={avatar3} />
-                        <img className="avatar-img" src={avatar4} alt={avatar4} />
-                        <img className="avatar-img" src={avatar5} alt={avatar5} />
-                        <img className="avatar-img" src={avatar6} alt={avatar6} />
-                        <img className="avatar-img" src={avatar7} alt={avatar7} />
-                        <img className="avatar-img" src={avatar8} alt={avatar8} />
-                        <img className="avatar-img" src={avatar9} alt={avatar9} />
+                        <img
+                            data-name="avatar1"
+                            onClick={updateAvatar}
+                            className="avatar-img"
+                            src={avatar1}
+                            alt={avatar1}
+                        />
+                        <img
+                            data-name="avatar2"
+                            onClick={updateAvatar}
+                            className="avatar-img"
+                            src={avatar2}
+                            alt={avatar2}
+                        />
+                        <img
+                            data-name="avatar3"
+                            onClick={updateAvatar}
+                            className="avatar-img"
+                            src={avatar3}
+                            alt={avatar3}
+                        />
+                        <img
+                            data-name="avatar4"
+                            onClick={updateAvatar}
+                            className="avatar-img"
+                            src={avatar4}
+                            alt={avatar4}
+                        />
+                        <img
+                            data-name="avatar5"
+                            onClick={updateAvatar}
+                            className="avatar-img"
+                            src={avatar5}
+                            alt={avatar5}
+                        />
+                        <img
+                            data-name="avatar6"
+                            onClick={updateAvatar}
+                            className="avatar-img"
+                            src={avatar6}
+                            alt={avatar6}
+                        />
+                        <img
+                            data-name="avatar7"
+                            onClick={updateAvatar}
+                            className="avatar-img"
+                            src={avatar7}
+                            alt={avatar7}
+                        />
+                        <img
+                            data-name="avatar8"
+                            onClick={updateAvatar}
+                            className="avatar-img"
+                            src={avatar8}
+                            alt={avatar8}
+                        />
+                        <img
+                            data-name="avatar9"
+                            onClick={updateAvatar}
+                            className="avatar-img"
+                            src={avatar9}
+                            alt={avatar9}
+                        />
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     );
 };
 export default UpdateProfile;
