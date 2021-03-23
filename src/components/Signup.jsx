@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import logIn from "../images/signUP.png";
 import { useHistory } from "react-router-dom";
 import { addSignupData } from "../helpers/apiCall";
-import "../css/form.css";
+import "../css/signup.css";
 
 const Signup = () => {
   const context = useContext(myContext);
@@ -21,7 +21,7 @@ const Signup = () => {
   return (
     <>
       <div className="signup-wrapper">
-        <div>
+        <div className="text-wrapper">
           <h2>Hurrraaaaay! Let us know who you are!</h2>
           <h3>We won’t share you info with anybody. I promise.</h3>
           <form onSubmit={handleSubmit(onSubmit)} className="myForm">
@@ -63,7 +63,7 @@ const Signup = () => {
               ref={register({ required: true })}
               placeholder="Repeat password"
             />
-            <button>Create account</button>
+            <button className="signup-btn">Create account</button>
           </form>
         </div>
 

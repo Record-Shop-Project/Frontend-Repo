@@ -27,11 +27,10 @@ const UpdateProfile = () => {
     const code = e.target.dataset.name;
     const data = { avatar: `/images/${code}.jpg` };
     const updateUser = await updateUserProfile(data, loginUser._id);
+    console.log("this is data", data);
     if (!updateUser.error) {
       setloginUser(updateUser);
     }
-    console.clear();
-    console.log("this is code", code);
   };
 
   return (

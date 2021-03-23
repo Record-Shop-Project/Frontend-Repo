@@ -7,7 +7,6 @@ export const UserContextProvider = (props) => {
   const [loginUser, setloginUser] = useState({});
   const [userStatus, setUserStatus] = useState(false);
   const [error, setError] = useState(false);
-
   const [updateUser, setUpdateUser] = useState([]);
 
   return (
