@@ -15,6 +15,7 @@ import avatar9 from "../images/avatar9.jpg";
 const UpdateProfile = () => {
     const context = useContext(myContext);
     const { loginUser } = context;
+    console.log("loginUser=", loginUser);
 
     const { register, handleSubmit, errors } = useForm();
 
