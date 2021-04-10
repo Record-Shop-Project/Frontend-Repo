@@ -34,7 +34,7 @@ const Login = () => {
 
   return (
     <div className="login-wrapper">
-      <div>
+      <div className="login-text-wrapper">
         <h2>Welcome back!!</h2>
         {error && <h1 style={{ color: "red" }}>Login Error </h1>}
         <h3>Please fill in your credentials.</h3>
@@ -55,16 +55,18 @@ const Login = () => {
           />
           {errors.password && <p>please provide your password!</p>}
 
-          <button>Log in</button>
-          <span>
-            You don’t have an account? Create one{" "}
-            <a onClick={() => history.push("/store")}>here</a>
-          </span>
+          <button className="login-btn">Log in</button>
+          <div>
+            <p>
+              You don’t have an account? Create one{" "}
+              <a onClick={() => history.push("/signup")}>here</a>
+            </p>
+          </div>
         </form>
       </div>
 
       <div className="logo-img">
-        <img src={logIn} alt={logIn} />
+        <img className="login-img" src={logIn} alt={logIn} />
       </div>
     </div>
   );

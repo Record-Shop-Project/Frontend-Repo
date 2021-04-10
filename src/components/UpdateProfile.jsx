@@ -23,6 +23,7 @@ const UpdateProfile = () => {
 
     //------------ Update Avatar ---------------------------------------
 
+<<<<<<< HEAD
     const updateAvatar = async (e) => {
         const code = e.target.dataset.name;
         const data = { avatar: `/images/${code}.jpg` };
@@ -34,6 +35,17 @@ const UpdateProfile = () => {
         console.clear();
         console.log("this is code", code);
     };
+=======
+  const updateAvatar = async (e) => {
+    const code = e.target.dataset.name;
+    const data = { avatar: `/images/${code}.jpg` };
+    const updateUser = await updateUserProfile(data, loginUser._id);
+    console.log("this is data", data);
+    if (!updateUser.error) {
+      setloginUser(updateUser);
+    }
+  };
+>>>>>>> Eniko
 
     return (
         <div className="profile-wrapper">
