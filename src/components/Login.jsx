@@ -1,9 +1,9 @@
-import { useContext } from "react";
-import { useForm } from "react-hook-form";
-import { UserContext } from "../context/UserContext";
-import { Redirect, useHistory } from "react-router-dom";
-import lemmy from "../statics/lemmy.jpeg";
-import { loginUser } from "../helpers/apiCalls";
+import { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import { UserContext } from '../context/UserContext';
+import { Redirect, useHistory } from 'react-router-dom';
+import lemmy from '../statics/lemmy.jpeg';
+import { loginUser } from '../helpers/apiCalls';
 
 const Login = () => {
   const { register, handleSubmit, errors } = useForm();
@@ -17,48 +17,64 @@ const Login = () => {
     if (!res.error) {
       setUser(res.data);
       setUserStatus(true);
-      console.log("newdata.data", newData.data);
-      setloginUser(newData.data);
-      history.push("/store");
+      history.push('/dashboard');
     }
   };
 
+  if (userStatus) return <Redirect to='/dashboard' />;
+
   return (
-    <div className="login-wrapper">
-      <div className="login-text-wrapper">
-        <h2>Welcome back!!</h2>
-        {error && <h1 style={{ color: "red" }}>Login Error </h1>}
-        <h3>Please fill in your credentials.</h3>
-        <form onSubmit={handleSubmit(onSubmit)} className="myForm">
-          <h1>Login</h1>
-          <input
-            type="text"
-            name="email"
-            ref={register({ required: true })}
-            placeholder="Email"
-          />
-          {errors.email && <p>please provide your valid email!</p>}
-          <input
-            type="password"
-            name="password"
-            ref={register({ required: true })}
-            placeholder="Password"
-          />
-          {errors.password && <p>please provide your password!</p>}
+    <div className='login'>
+      <section>
+        <div className='left'>
+          <h1>Welcome back!</h1>
+          <p>Please fill in your credentials</p>
+          <div className='form-container'>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className='info'>
+                <input
+                  name='email'
+                  placeholder='Email'
+                  defaultValue='Judd_Ryan@hotmail.com'
+                  ref={register({
+                    required: 'Please put your email sir.',
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: 'Email is invalid. Please fix',
+                    },
+                  })}
+                />
+                <div className='error-message'>
+                  {errors.email && <span>{errors.email.message}</span>}
+                </div>
+                <input
+                  name='password'
+                  type='password'
+                  placeholder='Password'
+                  defaultValue='0123456789'
+                  ref={register({
+                    required: 'Required',
+                    minLength: {
+                      value: 5,
+                      message: 'Password must be at least 5 characters',
+                    },
+                  })}
+                />
+                <div className='error-message'>
+                  {errors.password && <span>{errors.password.message}</span>}
+                </div>
+              </div>
 
-          <button className="login-btn">Log in</button>
-          <div>
-            <p>
-              You don’t have an account? Create one{" "}
-              <a onClick={() => history.push("/signup")}>here</a>
-            </p>
+              <div className='submit'>
+                <input className='button-bg' type='submit' value='Log in' />
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
-
-      <div className="logo-img">
-        <img className="login-img" src={logIn} alt={logIn} />
-      </div>
+        </div>
+        <div className='right'>
+          <img src={lemmy} alt='uncle-lemmy'></img>
+        </div>
+      </section>
     </div>
   );
 };
