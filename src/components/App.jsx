@@ -1,26 +1,31 @@
-import React from "react";
+import "../scss/App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "./Home";
+
+import Nav from "./Nav";
+import Dashboard from "./Dashboard";
+import NotFound from "./NotFound";
+import Homepage from "./Homepage";
 import Login from "./Login";
 import Signup from "./Signup";
-import { RecordStore } from "./RecordStore";
-import NotFound404 from "./NotFound404";
-import Footer from "./Footer";
-import UpdateProfile from "./UpdateProfile";
+import Profile from "./Profile";
+import Cart from "./Cart";
 
-const App = () => {
+const App = (props) => {
   return (
-    <div className="App">
+    <div className="app">
       <Router>
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/profile" component={UpdateProfile} />
-          <Route path="/store" component={RecordStore} />
-          <Route path="*" component={NotFound404} />
-        </Switch>
-        <Footer />
+        <Nav></Nav>
+        <div className="main">
+          <Switch>
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/cart" component={Cart} />
+            <Route exact path="" component={Homepage} />
+            <Route path="*" component={NotFound} />
+          </Switch>
+        </div>
       </Router>
     </div>
   );

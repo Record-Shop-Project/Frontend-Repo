@@ -1,0 +1,167 @@
+$color1: #f2f2f2;
+$color2: #919191;
+$color3: #eea668;
+$color4: #f1efff;
+$color5: #000aff;
+$notHorribleRed: rgb(172, 27, 27);
+
+@import 'BootstrapFBW36';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
+
+.main {
+  height: 100%;
+  .homepage {
+    section {
+      background-image: url('../statics/recordshop.jpeg');
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      transform: filter;
+      filter: brightness(0.9);
+      height: 100vh;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-evenly;
+      align-items: flex-end;
+      align-content: center;
+      .gabriel {
+        background: white;
+        font-weight: 700;
+        padding: 5px 10px;
+        font-size: x-small;
+        border-radius: 40px;
+        margin-bottom: 20px;
+      }
+      .left,
+      .right {
+        flex-basis: 50%;
+        padding: 20px;
+        h1 {
+          font-size: 40px;
+        }
+        p {
+          font-size: 22px;
+        }
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .login {
+    height: 100%;
+    section {
+      height: 100%;
+      padding: 120px 20px 80px 20px;
+      display: flex;
+      flex-direction: row;
+      .left,
+      .right {
+        flex-basis: 50%;
+        padding: 20px 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        h1 {
+          font-size: xx-large;
+          margin: 0;
+        }
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .profile {
+    height: 100%;
+    section {
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      .left,
+      .right {
+        flex-basis: 50%;
+        padding: 20px 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        h1 {
+          font-size: xx-large;
+          margin: 0;
+        }
+
+        img {
+          width: 100%;
+        }
+      }
+      .right {
+        background-color: $color4;
+        .avatar-panel {
+          margin-top: 40px;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          .main {
+            margin-right: 40px;
+            img {
+              width: 220px;
+              border: 2px solid $color3;
+              border-radius: 50%;
+            }
+          }
+          .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-row-gap: 15px;
+            grid-column-gap: 20px;
+            grid-auto-flow: row;
+            img {
+              border-radius: 50%;
+              border: 2px solid $color3;
+              width: 60px;
+              cursor: pointer;
+            }
+            .selected {
+              border: 0;
+              box-shadow: 0 0 0 5px $color5;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .dashboard {
+    background: white;
+    color: black;
+    height: 100%;
+    section {
+      height: 100%;
+      padding: 120px 20px 80px 20px;
+      display: flex;
+      flex-direction: column;
+      h3 {
+        margin-bottom: 0;
+      }
+      .records-container {
+        margin-top: 50px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-row-gap: 40px;
+        grid-column-gap: 40px;
+        grid-auto-flow: row;
+        .record {
+          box-shadow: 0px 0px 10px #00000041;
+          img {
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  }
+}

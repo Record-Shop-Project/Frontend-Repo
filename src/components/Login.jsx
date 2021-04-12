@@ -1,73 +1,80 @@
-import React, { useState, useContext } from "react";
-import { useForm } from "react-hook-form";
-import logIn from "../images/logIn.png";
-import { addLoginData } from "../helpers/apiCall";
-import { useHistory } from "react-router-dom";
-import { myContext } from "../context/myContext";
-import "../css/form.css";
+import { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import { UserContext } from '../context/UserContext';
+import { Redirect, useHistory } from 'react-router-dom';
+import lemmy from '../statics/lemmy.jpeg';
+import { loginUser } from '../helpers/apiCalls';
 
 const Login = () => {
-  const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
-  const context = useContext(myContext);
-  const {
-    loginUser,
-    setloginUser,
-    userStatus,
-    setUserStatus,
-    error,
-    setError,
-  } = context;
+  const { setUser, setUserStatus, userStatus } = useContext(UserContext);
+
+  const history = useHistory();
 
   const onSubmit = async (data) => {
-    const newData = await addLoginData(data);
-    console.log(newData);
-
-    if (newData.error) {
-      setError(true);
-    } else {
+    console.log(data);
+    const res = await loginUser(data);
+    if (!res.error) {
+      setUser(res.data);
       setUserStatus(true);
-      setloginUser(newData.data);
-      history.push("/store");
+      history.push('/dashboard');
     }
   };
 
-  console.log("userStatus=>", userStatus);
+  if (userStatus) return <Redirect to='/dashboard' />;
 
   return (
-    <div className="login-wrapper">
-      <div>
-        <h2>Welcome back!!</h2>
-        {error && <h1 style={{ color: "red" }}>Login Error </h1>}
-        <h3>Please fill in your credentials.</h3>
-        <form onSubmit={handleSubmit(onSubmit)} className="myForm">
-          <h1>Login</h1>
-          <input
-            type="text"
-            name="email"
-            ref={register({ required: true })}
-            placeholder="Email"
-          />
-          {errors.email && <p>please provide your valid email!</p>}
-          <input
-            type="password"
-            name="password"
-            ref={register({ required: true })}
-            placeholder="Password"
-          />
-          {errors.password && <p>please provide your password!</p>}
+    <div className='login'>
+      <section>
+        <div className='left'>
+          <h1>Welcome back!</h1>
+          <p>Please fill in your credentials</p>
+          <div className='form-container'>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className='info'>
+                <input
+                  name='email'
+                  placeholder='Email'
+                  defaultValue='Judd_Ryan@hotmail.com'
+                  ref={register({
+                    required: 'Please put your email sir.',
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: 'Email is invalid. Please fix',
+                    },
+                  })}
+                />
+                <div className='error-message'>
+                  {errors.email && <span>{errors.email.message}</span>}
+                </div>
+                <input
+                  name='password'
+                  type='password'
+                  placeholder='Password'
+                  defaultValue='0123456789'
+                  ref={register({
+                    required: 'Required',
+                    minLength: {
+                      value: 5,
+                      message: 'Password must be at least 5 characters',
+                    },
+                  })}
+                />
+                <div className='error-message'>
+                  {errors.password && <span>{errors.password.message}</span>}
+                </div>
+              </div>
 
-          <button>Log in</button>
-          <span>
-            You don’t have an account? Create one{" "}
-            <a onClick={() => history.push("/store")}>here</a>
-          </span>
-        </form>
-      </div>
-
-      <div className="logo-img">
-        <img src={logIn} alt={logIn} />
-      </div>
+              <div className='submit'>
+                <input className='button-bg' type='submit' value='Log in' />
+              </div>
+            </form>
+          </div>
+        </div>
+        <div className='right'>
+          <img src={lemmy} alt='uncle-lemmy'></img>
+        </div>
+      </section>
     </div>
   );
 };
