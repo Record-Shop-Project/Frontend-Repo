@@ -1,5 +1,8 @@
 import axios from "axios";
 const serverUrl = `http://localhost:8080`;
+axios.defaults.withCredentials = true;
+
+//axios.defaults.baseURL = `http://localhost:8080`; // set our API server url
 
 export const addLoginData = async (data) => {
   try {
@@ -28,6 +31,7 @@ export const addSignupData = async (data) => {
 export const getRecordData = async () => {
   try {
     const recordData = await axios.get(`${serverUrl}/records`);
+    console.log("recorddata:", recordData);
 
     return recordData.data;
   } catch (err) {

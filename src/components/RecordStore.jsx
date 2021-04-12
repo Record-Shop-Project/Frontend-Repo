@@ -15,6 +15,7 @@ export const RecordStore = () => {
 
   const fetchRecords = async () => {
     const myRecords = await getRecordData();
+    console.log("myRecords", myRecords);
     setRecords(myRecords);
   };
 
@@ -25,10 +26,7 @@ export const RecordStore = () => {
   return (
     <div className="store-wrapper">
       <section>
-        <h3>Dashboard</h3>
-        <p>Here you can find all our records.</p>
 
-        {/* <button onClick={fetchLoginData}>profile</button> */}
         <div className="record-container">
           <div className="image-wrapper">
             {records &&

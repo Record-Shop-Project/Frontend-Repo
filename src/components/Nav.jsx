@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { myContext } from "../context/myContext";
 import { useParams, useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
-// import "../css/nav.css";
+import "../css/nav.css";
 
 const Nav = () => {
   const context = useContext(myContext);
