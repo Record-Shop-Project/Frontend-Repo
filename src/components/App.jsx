@@ -9,8 +9,14 @@ import Login from "./Login";
 import Signup from "./Signup";
 import Profile from "./Profile";
 import Cart from "./Cart";
+import PrivateRoute from "./PrivateRoute";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
-const App = (props) => {
+const App = () => {
+  const { authDone } = useContext(UserContext);
+  console.log("is auth done", authDone);
+
   return (
     <div className="app">
       <Router>
@@ -19,9 +25,9 @@ const App = (props) => {
           <Switch>
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/profile" component={Profile} />
-            <Route exact path="/cart" component={Cart} />
+            <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/profile" component={Profile} />
+            <PrivateRoute exact path="/cart" component={Cart} />
             <Route exact path="" component={Homepage} />
             <Route path="*" component={NotFound} />
           </Switch>

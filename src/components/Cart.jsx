@@ -5,3 +5,8 @@ const Cart = () => {
 };
 
 export default Cart;
+
+//uer logged in =>
+//this user clicked +
+//this album +1
+//if clicked more times, album is already there? then add more to quantity

@@ -4,7 +4,7 @@ import { authenticateUser } from '../helpers/apiCalls';
 export const UserContext = createContext();
 
 export const UserContextProvider = (props) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState();
   const [records, setRecords] = useState([]);
   const [userStatus, setUserStatus] = useState(false);
   const [authDone, setAuthDone] = useState(false);
@@ -14,14 +14,17 @@ export const UserContextProvider = (props) => {
     const authMe = async () => {
       try {
         const result = await authenticateUser();
+        console.log("api", result);
         if (result.error) {
           // clearUserInStorage()
           setUser();
+          setUserStatus(false);
           setAuthDone(true)
           return
         }
 
         setUser(result);
+        setUserStatus(true);
         setAuthDone(true);
       } catch (error) {}
     };

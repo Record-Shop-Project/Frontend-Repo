@@ -1,10 +1,22 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { MdShoppingCart } from "react-icons/md";
+import { logOutUser } from "../helpers/apiCalls";
 
 const Nav = () => {
-  const { user, userStatus } = useContext(UserContext);
+  const { user, setUser, setUserStatus, userStatus, setAuthDone } = useContext(
+    UserContext
+  );
+  const history = useHistory();
+
+  const handleLogout = () => {
+    setUser(); // clear user / shutdown login session
+    setUserStatus(false);
+    setAuthDone(true); // reset the auth process hook
+    logOutUser(); // log out user at API - by clearing cookie...
+    history.push("/login");
+  };
 
   return (
     <nav>
@@ -30,6 +42,7 @@ const Nav = () => {
               </NavLink>
             </>
           )}
+
           {userStatus && (
             <>
               <NavLink to="/cart">
@@ -43,6 +56,7 @@ const Nav = () => {
               >
                 <img src={user.avatar}></img>
               </NavLink>
+              <button onClick={handleLogout}>log out</button>
             </>
           )}
         </div>

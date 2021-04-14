@@ -24,11 +24,10 @@ const Dashboard = () => {
     getData();
   }, [setRecords]);
 
-  if (authDone) {
-    debugger;
-    console.log(" aut done now");
-    if (user === {}) return <Redirect to="/login"></Redirect>;
-  }
+  // if (authDone) {
+  //   console.log(" aut done now");
+  //   if (user === {}) return <Redirect to="/login"></Redirect>;
+  // }
 
   const recordsList = records.map((record) => (
     <Record key={record._id} data={record}></Record>

@@ -29,9 +29,30 @@ export const updateUser = async (data, id) => {
 export const authenticateUser = async (next) => {
   try {
     const response = await axios.post(`${serverUrl}/me/auth`);
+    console.log("auth res.data", response.data);
     return response.data;
   }
   catch(err) {
    next(err)
+  }
+}
+
+export const logOutUser = async () => {
+  try {
+    console.log("Logging out at backend...")
+      const response = await axios.post(`${serverUrl}/users/logout`);
+      console.log("Result: ", response.data)
+      return response.data;
+  } catch(err){
+    return err
+  }
+};
+
+export const addOrder = async (orderData) => {
+  try {
+    const order = await axios.post(`${serverUrl}/cart`, orderData);
+    return order
+  } catch(err) {
+    return err
   }
 }

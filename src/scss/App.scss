@@ -5,14 +5,14 @@ $color4: #f1efff;
 $color5: #000aff;
 $notHorribleRed: rgb(172, 27, 27);
 
-@import 'BootstrapFBW36';
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
+@import "BootstrapFBW36";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap");
 
 .main {
   height: 100%;
   .homepage {
     section {
-      background-image: url('../statics/recordshop.jpeg');
+      background-image: url("../statics/recordshop.jpeg");
       height: 100%;
       background-position: center;
       background-repeat: no-repeat;
