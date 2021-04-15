@@ -33,6 +33,7 @@ const Dashboard = () => {
     <Record key={record._id} data={record}></Record>
   ));
 
+  console.log("hi Christine", records);
   return (
     <div className="dashboard">
       <section>
