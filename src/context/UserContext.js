@@ -8,6 +8,7 @@ export const UserContextProvider = (props) => {
   const [records, setRecords] = useState([]);
   const [userStatus, setUserStatus] = useState(false);
   const [authDone, setAuthDone] = useState(false);
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     console.log('Context is rendering');
@@ -34,7 +35,7 @@ export const UserContextProvider = (props) => {
 
   return (
     <UserContext.Provider
-      value={{ user, setUser, records, setRecords, userStatus, setUserStatus, authDone, setAuthDone }}
+      value={{ user, setUser, records, setRecords, userStatus, setUserStatus, authDone, setAuthDone, orders, setOrders }}
     >
       {props.children}
     </UserContext.Provider>

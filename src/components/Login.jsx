@@ -37,7 +37,7 @@ const Login = () => {
                 <input
                   name="email"
                   placeholder="Email"
-                  defaultValue="Buddy.Becker@hotmail.com"
+                  defaultValue="Toby21@gmail.com"
                   ref={register({
                     required: "Please put your email sir.",
                     pattern: {
