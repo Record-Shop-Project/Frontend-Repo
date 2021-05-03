@@ -14,6 +14,10 @@ const Signup = () => {
 
   const onSubmit = async (data) => {
     const user = await addSignupData(data);
+    if (user.error) {
+      console.log(user.error);
+      return
+    }
     setSignup(user);
     history.push("/store");
   };

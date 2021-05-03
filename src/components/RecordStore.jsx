@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useReducer } from "react";
 import { myContext } from "../context/myContext";
 import { getRecordData } from "../helpers/apiCall";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import { updateUserProfile } from "../helpers/apiCall";
 import "../css/recordStore.css";
 
@@ -31,7 +31,9 @@ export const RecordStore = () => {
           <div className="image-wrapper">
             {records &&
               records.map((record) => {
-                return <img src={record.cover} />;
+
+                return <img src={record.cover} onClick={() => alert("hi")} />;
+
               })}
           </div>
         </div>
