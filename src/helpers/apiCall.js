@@ -1,5 +1,6 @@
 import axios from "axios";
-axios.defaults.baseURL = `http://localhost:8080`; // set our API server url const serverUrl = `http://localhost:8080`;so I don't need to write  const logIndata = await axios.post(`${serverUrl}/login`, data);
+axios.defaults.baseURL =
+  process.env.REACT_APP_API_URL || `http://localhost:8080`; // set our API server url const serverUrl = `http://localhost:8080`;so I don't need to write  const logIndata = await axios.post(`${serverUrl}/login`, data);
 axios.defaults.withCredentials = true;
 
 const extractApiError = (errAxios) => {
